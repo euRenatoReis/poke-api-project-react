@@ -1,6 +1,4 @@
 
-
-
 const pegarDataParaRenderizar = async (limit) => {
 
     try {
@@ -15,5 +13,20 @@ const pegarDataParaRenderizar = async (limit) => {
 
 }
 
+const PesquisarPokemonESpecificado = async (pokemonNome) => {
 
-export { pegarDataParaRenderizar }
+    try {
+      
+        const dataDOPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNome}`)
+        const pokemonDados = await dataDOPokemon.json()
+
+        return pokemonDados
+    } catch (error) {
+
+        console.log('erro ao captar dados do pokemon na função', error)
+    }
+
+}
+
+
+export { pegarDataParaRenderizar, PesquisarPokemonESpecificado }

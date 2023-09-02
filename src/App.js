@@ -1,55 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
-import { Pokedex } from './cards/pokedex';
-import { pegarDataParaRenderizar } from "../src/services/getData"
-import { useEffect, useState } from "react";
+import { ThemeProvider } from '../src/services/trocarTema.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home } from './pagesMontadas/Home';
+import { NoPage } from './pagesMontadas/NoPage';
 import { BotaoTema } from './botoes/botoes';
+import { PokePage } from './pagesMontadas/PokePage';
+
 
 function App() {
-
-  const [pokemons, setPokemons] = useState([])
-  const [limit, setLimite] = useState(20)
-
-
-  const pegandoData = async () => {
-
-    try {
-
-      const pegaFunction = await pegarDataParaRenderizar(limit)
-      const pegaFunctionResults = await pegaFunction.results;
-
-      const pokemonsDatas = pegaFunctionResults.map(async (urlpokemon) => {
-
-        const urlDopoekemon = urlpokemon.url
-
-        const fetchPokemon = await fetch(urlDopoekemon)
-        return await fetchPokemon.json()
-
-      });
-
-      const resultados = await Promise.all(pokemonsDatas);
-
-      setPokemons(resultados)
-
-    } catch (error) {
-      console.error('erro ao pesquisar nas urls pokemon', error)
-    }
-
-  }
-
-  useEffect(() => {
-
-    pegandoData()
-
-  })
 
 
   return (
     <div className="App">
-      <header className="App-header">
-        <BotaoTema />
-      </header>
-      <Pokedex pokemons={pokemons} setLimite={setLimite} limit={limit} />
+      <ThemeProvider>
+        <header className="App-header">
+          <BotaoTema />
+        </header>
+        <BrowserRouter>
+          <Routes path="/">
+            <Route index element={<Home />} />
+            <Route path='poke-page' element={<PokePage />}></Route>
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }

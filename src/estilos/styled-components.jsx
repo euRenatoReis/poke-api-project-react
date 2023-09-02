@@ -43,6 +43,9 @@ export const PicturePokemonEstilizado = styled.picture`
      align-content: center;
      justify-content: center;
      background-color: #89FF7F;
+     border-top-left-radius: 14px;
+     border-top-right-radius: 14px;
+
 `
 
 export const BarraInferiorCard = styled.div`
