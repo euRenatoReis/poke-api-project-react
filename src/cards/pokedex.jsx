@@ -6,7 +6,8 @@ import Card from "./card"
 
 export const Pokedex = (props) => {
 
-    const { pokemons, setLimite, limit } = props
+    const { pokemons, setLimite, limit } = props;
+    
 
     return (
 

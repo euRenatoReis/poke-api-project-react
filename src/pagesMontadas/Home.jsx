@@ -15,9 +15,9 @@ const Home = () => {
             const pegaFunction = await pegarDataParaRenderizar(limit)
             const pegaFunctionResults = await pegaFunction.results;
 
-            const pokemonsDatas = pegaFunctionResults.map(async (urlpokemon) => {
+            const pokemonsDatas = await pegaFunctionResults.map(async (urlpokemon) => {
 
-                const urlDopoekemon = urlpokemon.url
+                const urlDopoekemon = await urlpokemon.url
 
                 const fetchPokemon = await fetch(urlDopoekemon)
                 return await fetchPokemon.json()

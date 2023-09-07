@@ -1,4 +1,30 @@
 
+
+
+/* const createPage = async (pokemon) => {
+
+    try {
+
+        let pokemonNome = pokemon.name;
+
+        const Pesquisando = await PesquisarPokemonESpecificado(pokemonNome)
+
+        console.log('resultado do pesquisando:', Pesquisando)
+
+        const prometendoPesquisa = await Promise.all(Pesquisando)
+
+        setResultsSearch(prometendoPesquisa)
+
+    } catch (error) {
+
+        console.log('erro ao pesquisar sobre o pokemon', error)
+    }
+
+} */
+
+
+
+
 const pegarDataParaRenderizar = async (limit) => {
 
     try {
@@ -16,7 +42,7 @@ const pegarDataParaRenderizar = async (limit) => {
 const PesquisarPokemonESpecificado = async (pokemonNome) => {
 
     try {
-      
+
         const dataDOPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNome}`)
         const pokemonDados = await dataDOPokemon.json()
 
@@ -29,4 +55,4 @@ const PesquisarPokemonESpecificado = async (pokemonNome) => {
 }
 
 
-export { pegarDataParaRenderizar, PesquisarPokemonESpecificado }
+export { pegarDataParaRenderizar, PesquisarPokemonESpecificado, /* createPage */ }

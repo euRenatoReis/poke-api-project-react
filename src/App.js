@@ -6,9 +6,13 @@ import { Home } from './pagesMontadas/Home';
 import { NoPage } from './pagesMontadas/NoPage';
 import { BotaoTema } from './botoes/botoes';
 import { PokePage } from './pagesMontadas/PokePage';
+import { useState } from 'react';
+import { Layout } from './pagesMontadas/layout';
 
 
 function App() {
+
+/*   const [resultsSearch, setResultsSearch] = useState([]) */
 
 
   return (
@@ -18,9 +22,9 @@ function App() {
           <BotaoTema />
         </header>
         <BrowserRouter>
-          <Routes path="/">
+          <Routes path="/" element={<Layout/>}>
             <Route index element={<Home />} />
-            <Route path='poke-page' element={<PokePage />}></Route>
+            <Route path='poke-page' element={<PokePage /* resultsSearch={resultsSearch} setResultsSearch={setResultsSearch} */ />}></Route>
             <Route path="*" element={<NoPage />} />
           </Routes>
         </BrowserRouter>

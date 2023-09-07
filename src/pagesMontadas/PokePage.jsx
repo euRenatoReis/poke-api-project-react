@@ -1,14 +1,14 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 
 
-const PokePage = async (props) => {
+const PokePage = async (/* props */) => {
 
-    const { resultsSearch } = props
+    /* const { resultsSearch } = props */
 
     return (
         <div>
-            <div className='linha-1'>
+          {/*   <div className='linha-1'>
                 <picture>
                     <source srcSet={resultsSearch.sprites.front_default}></source>
                     <img src={resultsSearch.sprites.front_default} alt='foto do pokemon'></img>
@@ -48,7 +48,7 @@ const PokePage = async (props) => {
 
 
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
