@@ -1,46 +1,39 @@
 
-import React, { useState } from 'react'
+import React from 'react'
+/* import {PrimeiraLinhaPokepage} from '../estilos/styled-components'
+import { useContext } from 'react'
+import { TelaPokeContext } from '../services/pageContext' */
 
+const PokePage = async () => {
 
-const PokePage = async (/* props */) => {
+   /*  const { pokeDado } = useContext(TelaPokeContext) */
 
-    /* const { resultsSearch } = props */
 
     return (
         <div>
-          {/*   <div className='linha-1'>
+          {/*   <PrimeiraLinhaPokepage className="linha-1">
                 <picture>
-                    <source srcSet={resultsSearch.sprites.front_default}></source>
-                    <img src={resultsSearch.sprites.front_default} alt='foto do pokemon'></img>
+                    <source srcSet={pokeDado}></source>
+                    <img src={pokeDado} alt='foto do pokemon'></img>
                 </picture>
 
                 <div className='identificacao'>
                     <div className='nome-tipos'>
-                        <h1>{resultsSearch.name}</h1>
-                        <p>{resultsSearch.types.map((tipo) => {
-
-                            return tipo.type.name
-                        })}</p>
+                        <h1>{pokeDado}</h1>
+                        <p>{pokeDado}</p>
                     </div>
                     <div className='abilidades'>
                         {
-                            resultsSearch.abilities.forEach((ability) => {
-
-                                return ability.name
-
-                            })
+                           pokeDado
                         }
                     </div>
                 </div>
-            </div>
-            <div className='linha-2'>
+            </PrimeiraLinhaPokepage>
+             <div className='linha-2'>
 
                 <div className='lista-moves'>
                     {
-                        resultsSearch.moves.forEach((movimento) => {
-
-                            return movimento.move.name
-                        })
+                        pokeDado
                     }
                 </div>
 

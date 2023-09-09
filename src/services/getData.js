@@ -1,11 +1,11 @@
 
+const createPage = async ( props) => {
 
-
-/* const createPage = async (pokemon) => {
+    const {setPokeDado, pokeDado} = props
 
     try {
 
-        let pokemonNome = pokemon.name;
+        let pokemonNome = await pokeDado.name;
 
         const Pesquisando = await PesquisarPokemonESpecificado(pokemonNome)
 
@@ -13,17 +13,14 @@
 
         const prometendoPesquisa = await Promise.all(Pesquisando)
 
-        setResultsSearch(prometendoPesquisa)
+        await setPokeDado(prometendoPesquisa)
 
     } catch (error) {
 
         console.log('erro ao pesquisar sobre o pokemon', error)
     }
 
-} */
-
-
-
+}
 
 const pegarDataParaRenderizar = async (limit) => {
 

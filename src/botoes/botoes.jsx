@@ -12,7 +12,6 @@ export const BotaoCarregarMais = (props) => {
          setLimite(limit)
     }
 
-
     return (
 
         <BotaoCarregarMaisEstilizado onClick={() => morePokemon(limit)} className="botao-carregar-mais">

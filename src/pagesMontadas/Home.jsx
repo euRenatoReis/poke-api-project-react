@@ -17,9 +17,10 @@ const Home = () => {
 
             const pokemonsDatas = await pegaFunctionResults.map(async (urlpokemon) => {
 
-                const urlDopoekemon = await urlpokemon.url
+                const urlDopokemon = await urlpokemon.url
 
-                const fetchPokemon = await fetch(urlDopoekemon)
+                const fetchPokemon = await fetch(urlDopokemon)
+                
                 return await fetchPokemon.json()
 
             });

@@ -76,3 +76,11 @@ export const BotaoTemaEstilizado = styled.button`
       background-color: gray;
       border: solid 2px black; 
 `
+
+export const PrimeiraLinhaPokepage = styled.div`
+
+     display: flex;
+     flex-direction: row;
+     
+     background-color: red;
+`

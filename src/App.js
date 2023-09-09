@@ -6,28 +6,29 @@ import { Home } from './pagesMontadas/Home';
 import { NoPage } from './pagesMontadas/NoPage';
 import { BotaoTema } from './botoes/botoes';
 import { PokePage } from './pagesMontadas/PokePage';
-import { useState } from 'react';
 import { Layout } from './pagesMontadas/layout';
+import { TelaPokeProvider } from './services/pageContext';
 
 
 function App() {
 
-/*   const [resultsSearch, setResultsSearch] = useState([]) */
-
-
   return (
     <div className="App">
       <ThemeProvider>
-        <header className="App-header">
-          <BotaoTema />
-        </header>
-        <BrowserRouter>
-          <Routes path="/" element={<Layout/>}>
-            <Route index element={<Home />} />
-            <Route path='poke-page' element={<PokePage /* resultsSearch={resultsSearch} setResultsSearch={setResultsSearch} */ />}></Route>
-            <Route path="*" element={<NoPage />} />
-          </Routes>
-        </BrowserRouter>
+        <TelaPokeProvider>
+          <header className="App-header">
+            <BotaoTema />
+          </header>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path='poke-page' element={<PokePage />} />
+                <Route path="*" element={<NoPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </TelaPokeProvider>
       </ThemeProvider>
     </div>
   );
