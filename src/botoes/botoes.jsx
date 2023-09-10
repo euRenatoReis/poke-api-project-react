@@ -1,10 +1,12 @@
 import React, { useContext } from "react"
-import { BotaoCarregarMaisEstilizado, BotaoTemaEstilizado } from "../estilos/styled-components"
+
 import { ThemeContext, themes } from "../services/trocarTema"
 
 export const BotaoCarregarMais = (props) => {
 
     const { limit, setLimite } = props
+
+    const { theme } = useContext(ThemeContext)
 
     const morePokemon = (limit) => {
 
@@ -14,9 +16,9 @@ export const BotaoCarregarMais = (props) => {
 
     return (
 
-        <BotaoCarregarMaisEstilizado onClick={() => morePokemon(limit)} className="botao-carregar-mais">
+        <button onClick={() => morePokemon(limit)} className="botao-carregar-mais">
             Carregar Mais
-        </BotaoCarregarMaisEstilizado>
+        </button>
     )
 }
 
@@ -27,7 +29,7 @@ export const BotaoTema = () => {
 
     return (
 
-        <BotaoTemaEstilizado  onClick={()=> setTheme(theme === themes.light ? themes.dark : themes.light )}>
-        </BotaoTemaEstilizado>
+        <button className="botao-tema"  onClick={()=> setTheme(theme === themes.light ? themes.dark : themes.light )}>
+        </button>
     )
 }

@@ -1,6 +1,6 @@
 
 import { BotaoCarregarMais } from "../botoes/botoes";
-import { PokeDexEstilizada, ListaDaPokedexEstilizada } from "../estilos/styled-components";
+import { PokeDexEstilizada, ListaDaPokedexEstilizada } from "../estilos/GlobalStyles";
 import Card from "./card"
 
 
@@ -8,19 +8,19 @@ export const Pokedex = (props) => {
 
     const { pokemons, setLimite, limit } = props;
     
-
+    
     return (
 
-        <PokeDexEstilizada className="pokedex-main">
-            <ListaDaPokedexEstilizada className="lista-pokedex">
+        <section className="pokedex-main">
+            <ul className="lista-pokedex">
                 {pokemons.map((pokemon, index) => (
 
-                    <Card pokemon={pokemon} key={index}></Card>
+                    <li className="list-card-pokemon" pokemon={pokemon} key={index}></li>
                 ))
                 }
-            </ListaDaPokedexEstilizada>
+            </ul>
 
-            <BotaoCarregarMais setLimite={setLimite} limit={limit} />
-        </PokeDexEstilizada>
+            <input className="mostrar-mais" setLimite={setLimite} limit={limit} type="button"/>
+        </section>
     )
 }

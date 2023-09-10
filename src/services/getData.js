@@ -1,5 +1,5 @@
 
-const createPage = async ( props) => {
+/* const createPage = async ( props) => {
 
     const {setPokeDado, pokeDado} = props
 
@@ -20,7 +20,7 @@ const createPage = async ( props) => {
         console.log('erro ao pesquisar sobre o pokemon', error)
     }
 
-}
+} */
 
 const pegarDataParaRenderizar = async (limit) => {
 
