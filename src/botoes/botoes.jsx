@@ -1,22 +1,23 @@
 import React, { useContext } from "react"
 
 import { ThemeContext, themes } from "../services/trocarTema"
+import styled from "styled-components"
 
 export const BotaoCarregarMais = (props) => {
 
-    const { limit, setLimite } = props
+    const { limit, setlimite } = props
 
     const { theme } = useContext(ThemeContext)
 
-    const morePokemon = (limit) => {
+    const morePokemon = () => {
 
-         limit = limit + 20
-         setLimite(limit)
+        limit = limit + 20
+        setlimite(limit)
     }
 
     return (
 
-        <button onClick={() => morePokemon(limit)} className="botao-carregar-mais">
+        <button theme={theme} onClick={() => morePokemon()} className="botao-carregar-mais">
             Carregar Mais
         </button>
     )
@@ -25,11 +26,27 @@ export const BotaoCarregarMais = (props) => {
 
 export const BotaoTema = () => {
 
-    const { theme, setTheme} = useContext(ThemeContext)
+    const { theme, updateTheme } = useContext(ThemeContext)
 
     return (
 
-        <button className="botao-tema"  onClick={()=> setTheme(theme === themes.light ? themes.dark : themes.light )}>
-        </button>
+        <EstilizaBotaoTema className="botao-tema" onClick={() => updateTheme(theme === themes.light ? themes.dark : themes.light)} theme={theme}>
+           tema
+        </EstilizaBotaoTema>
     )
 }
+
+
+const EstilizaBotaoTema = styled.button`
+
+.botao-tema{
+
+    width: 80px;
+    height: 80px;
+    color: ${ props => props.theme.primario.borderPrimaria };
+    background - color: ${ props => props.theme.secundario.backgroundSecundaria };
+    border: solid 2px ${ props => props.theme.primario.borderPrimaria };
+    border - radius: 40px
+}
+
+`

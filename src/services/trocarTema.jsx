@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import React, { createContext, useEffect, useState } from "react";
 
 
 export const themes = {
@@ -17,16 +17,33 @@ export const themes = {
     }
 }
 
-export const ThemeContext = createContext({});
+export const ThemeContext = createContext({
+    theme: 'light',
+    updateTheme: () => { }
+
+});
 
 export const ThemeProvider = (props) => {
 
     const [theme, setTheme] = useState(themes.light);
 
+    useEffect(() => {
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
+    const updateTheme = (newTheme) => {
+
+        setTheme(newTheme)
+    }
+
+    const currentTheme = themes[theme] || themes.light;
+
     return (
 
-        <ThemeContext.Provider value={{ theme, setTheme }}>
-            {props.children}
+        <ThemeContext.Provider value={{ theme, updateTheme }}>
+            <ThemeProvider theme={currentTheme} key={theme}>
+                {props.children}
+            </ThemeProvider>
         </ThemeContext.Provider>
     )
 }

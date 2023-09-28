@@ -1,39 +1,65 @@
 
-import React from 'react'
-/* import {PrimeiraLinhaPokepage} from '../estilos/styled-components'
-import { useContext } from 'react'
-import { TelaPokeContext } from '../services/pageContext' */
+import React, { useEffect, useState, useContext } from 'react'
+import { PesquisarPokemonESpecificado } from '../services/getData'
+import { useParams } from 'react-router-dom'
+import styled from 'styled-components';
+import { ThemeContext } from '../services/trocarTema';
 
 const PokePage = async () => {
 
-   /*  const { pokeDado } = useContext(TelaPokeContext) */
+    const { pokemonName } = useParams();
+    const [pokemonEscolhido, setPokemonEscolhido] = useState()
+
+    const { theme } = useContext(ThemeContext)
+
+
+    const pegaDadosPesquisados = async () => {
+
+        try {
+
+            const pegaDado = await PesquisarPokemonESpecificado(pokemonName)
+            console.log('o pokemon é:', pegaDado)
+
+            const resultados = await Promise.all(pegaDado)
+
+            setPokemonEscolhido(resultados)
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+
+        pegaDadosPesquisados()
+    })
 
 
     return (
-        <div>
-          {/*   <PrimeiraLinhaPokepage className="linha-1">
+        <TelaPokemonEstilizada theme={theme}>
+            <PrimeiraLinhaPokePages className="linha-1">
                 <picture>
-                    <source srcSet={pokeDado}></source>
-                    <img src={pokeDado} alt='foto do pokemon'></img>
+                    <source srcSet={pokemonEscolhido}></source>
+                    <img src={pokemonEscolhido} alt='foto do pokemon'></img>
                 </picture>
 
                 <div className='identificacao'>
                     <div className='nome-tipos'>
-                        <h1>{pokeDado}</h1>
-                        <p>{pokeDado}</p>
+                        <h1>{pokemonEscolhido}</h1>
+                        <p>{pokemonEscolhido}</p>
                     </div>
                     <div className='abilidades'>
                         {
-                           pokeDado
+                            pokemonEscolhido
                         }
                     </div>
                 </div>
-            </PrimeiraLinhaPokepage>
-             <div className='linha-2'>
+            </PrimeiraLinhaPokePages>
+            <div className='linha-2'>
 
                 <div className='lista-moves'>
                     {
-                        pokeDado
+                        pokemonEscolhido
                     }
                 </div>
 
@@ -41,9 +67,30 @@ const PokePage = async () => {
 
 
                 </div>
-            </div> */}
-        </div>
+            </div>
+        </TelaPokemonEstilizada>
     )
 }
 
-export { PokePage }
+const TelaPokemonEstilizada = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+
+`
+
+const PrimeiraLinhaPokePages = styled.div`
+
+.PrimeiraLinhaPokepage {
+    display: flex;
+    flex - direction: row;
+    background - color: ${props => props.theme.especificos.fundoPokedex};
+ }
+
+`
+
+
+export { PokePage } 

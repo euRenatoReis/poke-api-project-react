@@ -1,12 +1,15 @@
+import styled from 'styled-components';
 import { Pokedex } from '../cards/pokedex';
 import { pegarDataParaRenderizar } from "../services/getData"
-import { useEffect, useState } from "react";
-import React from 'react'
+import React,{ useEffect, useState, useContext } from "react";
+import { ThemeContext } from '../services/trocarTema';
 
 const Home = () => {
 
     const [pokemons, setPokemons] = useState([])
-    const [limit, setLimite] = useState(20)
+    const [limit, setlimite] = useState(20)
+
+    const { theme } = useContext(ThemeContext)
 
     const pegandoData = async () => {
 
@@ -20,7 +23,7 @@ const Home = () => {
                 const urlDopokemon = await urlpokemon.url
 
                 const fetchPokemon = await fetch(urlDopokemon)
-                
+
                 return await fetchPokemon.json()
 
             });
@@ -41,9 +44,19 @@ const Home = () => {
     })
 
     return (
+        <HomeEstilizada theme={theme}>
+            <Pokedex pokemons={pokemons} setlimite={setlimite} limit={limit} />
+        </HomeEstilizada>
 
-        <Pokedex pokemons={pokemons} setLimite={setLimite} limit={limit} />
     )
 }
+
+const HomeEstilizada = styled.section`
+
+    display: flex;
+    heigth: 100%;
+    width: 100%; 
+    background-color: blue;
+`
 
 export { Home }
