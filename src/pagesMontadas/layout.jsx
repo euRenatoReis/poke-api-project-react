@@ -1,9 +1,9 @@
 
-import { Link, Outlet } from 'react-router-dom';
 import { BotaoTema } from '../botoes/botoes';
 import React, { useContext } from 'react'
 import styled from 'styled-components';
 import { ThemeContext } from '../services/trocarTema';
+import { Outlet } from 'react-router-dom';
 
 
 const Layout = () => {
@@ -15,8 +15,7 @@ const Layout = () => {
             <header className="App-header">
                 <BotaoTema />
             </header>
-            <p><Link to="/" />Home</p>
-            <Outlet />
+            <Outlet/>
         </CabecalhoEstilizado>
     )
 }
@@ -28,9 +27,9 @@ const CabecalhoEstilizado = styled.div`
     justify-content: center;
     align-itens: center;
     flex-direction: column;
-    color: ${props => props.theme.primario.borderPrimaria};
-    background-color: ${props => props.theme.secundario.backgroundSecundaria};
-    border: solid 2px ${props => props.theme.primario.borderPrimaria};
+    color: ${props => props.theme.primaria.borderPrimaria};
+    background-color: ${props => props.theme.secundaria.backgroundSecundaria};
+    border: solid 2px ${props => props.theme.primaria.borderPrimaria};
     height: 200px;
     width: 100%;
  

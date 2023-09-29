@@ -1,17 +1,16 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 
 import { ThemeContext, themes } from "../services/trocarTema"
 import styled from "styled-components"
 
-export const BotaoCarregarMais = (props) => {
+export const BotaoCarregarMais = () => {
 
-    const { limit, setlimite } = props
+    const [limit, setlimite] = useState(20)
 
     const { theme } = useContext(ThemeContext)
 
     const morePokemon = () => {
 
-        limit = limit + 20
         setlimite(limit)
     }
 
@@ -31,7 +30,7 @@ export const BotaoTema = () => {
     return (
 
         <EstilizaBotaoTema className="botao-tema" onClick={() => updateTheme(theme === themes.light ? themes.dark : themes.light)} theme={theme}>
-           tema
+            tema
         </EstilizaBotaoTema>
     )
 }
@@ -43,9 +42,9 @@ const EstilizaBotaoTema = styled.button`
 
     width: 80px;
     height: 80px;
-    color: ${ props => props.theme.primario.borderPrimaria };
-    background - color: ${ props => props.theme.secundario.backgroundSecundaria };
-    border: solid 2px ${ props => props.theme.primario.borderPrimaria };
+    color: ${props => props.theme.primaria.borderPrimaria};
+    background - color: ${props => props.theme.secundaria.backgroundSecundaria};
+    border: solid 2px ${props => props.theme.primaria.borderPrimaria};
     border - radius: 40px
 }
 

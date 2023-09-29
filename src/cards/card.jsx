@@ -46,7 +46,7 @@ const CardEstilizado = styled.div`
     display: flex;
     flex - direction: column;
     border - radius: 14px;
-    border: solid 2px ${props => props.theme.primario.borderPrimaria};
+    border: solid 2px ${props => props.theme.primaria.borderPrimaria};
 
     .picture-pokemon{
 
@@ -65,11 +65,11 @@ const CardEstilizado = styled.div`
         width: 100 %;
         height: 40 %;
         background - color: black;
-        border - top: solid 5px ${props => props.theme.primario.borderPrimaria};
+        border - top: solid 5px ${props => props.theme.primaria.borderPrimaria};
         border - bottom - left - radius: 14px;
         border - bottom - right - radius: 14px;
-        color: ${props => props.theme.primario.borderPrimaria};
-        background - color: ${props => props.theme.secundario.backgroundSecundaria};
+        color: ${props => props.theme.primaria.borderPrimaria};
+        background - color: ${props => props.theme.secundaria.backgroundSecundaria};
         }
 `
 

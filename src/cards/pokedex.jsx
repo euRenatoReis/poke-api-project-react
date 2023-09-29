@@ -13,13 +13,11 @@ export const Pokedex = (props) => {
 
         <PokedexEstilizada theme={theme} className="pokedex-main">
             <ul className="lista-pokedex">
-
                 {pokemons.map((pokemon, index) => (
 
                     <li className="list-card-pokemon" pokemon={pokemon} key={index}></li>
                 ))
                 }
-
             </ul>
 
             <input className="botao-carregar-mais" setlimite={setlimite} limit={limit} type="button" />
@@ -36,7 +34,7 @@ const PokedexEstilizada = styled.section`
     justify-content: center;
     flex-direction: column;
     gap: 10px;
-    background-color: #F46646;
+    background-color: ${props => props.theme.especificos.fundoPokedex};
     list-style: none;
     border-radius: 0px;
 
@@ -58,16 +56,16 @@ height: 300px;
 display: flex;
 flex - direction: column;
 border - radius: 14px;
-border: solid 2px ${props => props.theme.primario.borderPrimaria};
+border: solid 2px ${props => props.theme.primaria.borderPrimaria};
 }
 
 .botao-carregar-mais{
     width: 190px;
     height: 40px;
     border - radius: 20px;
-    color: ${props => props.theme.primario.borderPrimaria};
-    background - color: ${props => props.theme.secundario.backgroundSecundaria};
-    border: solid 2px ${props => props.theme.primario.borderPrimaria};
+    color: ${props => props.theme.primaria.borderPrimaria};
+    background - color: ${props => props.theme.secundaria.backgroundSecundaria};
+    border: solid 2px ${props => props.theme.primaria.borderPrimaria};
 }
 
 

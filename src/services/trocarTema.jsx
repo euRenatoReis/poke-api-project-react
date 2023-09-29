@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 
-
 export const themes = {
 
     light: {
@@ -36,14 +35,10 @@ export const ThemeProvider = (props) => {
         setTheme(newTheme)
     }
 
-    const currentTheme = themes[theme] || themes.light;
-
     return (
 
         <ThemeContext.Provider value={{ theme, updateTheme }}>
-            <ThemeProvider theme={currentTheme} key={theme}>
                 {props.children}
-            </ThemeProvider>
         </ThemeContext.Provider>
     )
 }

@@ -4,10 +4,10 @@ import { pegarDataParaRenderizar } from "../services/getData"
 import React,{ useEffect, useState, useContext } from "react";
 import { ThemeContext } from '../services/trocarTema';
 
-const Home = () => {
+const Home = (props) => {
 
     const [pokemons, setPokemons] = useState([])
-    const [limit, setlimite] = useState(20)
+    const { limit, setlimite } = props
 
     const { theme } = useContext(ThemeContext)
 
