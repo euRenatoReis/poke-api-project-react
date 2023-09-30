@@ -21,8 +21,10 @@ const NoPageStyled = styled.div`
 .no-page-screen{
 
   display: flex;
-  justify - content: center;
-  align - itens: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 `

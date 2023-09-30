@@ -8,7 +8,7 @@ import { ThemeContext } from '../services/trocarTema';
 const PokePage = async () => {
 
     const { pokemonName } = useParams();
-    const [pokemonEscolhido, setPokemonEscolhido] = useState()
+    const [pokemonEscolhido, setPokemonEscolhido] = useState([])
 
     const { theme } = useContext(ThemeContext)
 
@@ -86,8 +86,8 @@ const PrimeiraLinhaPokePages = styled.div`
 
 .PrimeiraLinhaPokepage {
     display: flex;
-    flex - direction: row;
-    background - color: ${props => props.theme.especificos.fundoPokedex};
+    flex-direction: row;
+    background-color: ${props => props.theme.especificos.fundoPokedex};
  }
 
 `

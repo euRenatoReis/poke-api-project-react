@@ -39,8 +39,8 @@ const Home = (props) => {
 
     useEffect(() => {
 
-        pegandoData()
-
+       pegandoData()
+       
     })
 
     return (
@@ -54,8 +54,9 @@ const Home = (props) => {
 const HomeEstilizada = styled.section`
 
     display: flex;
-    heigth: 100%;
-    width: 100%; 
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
     background-color: blue;
 `
 

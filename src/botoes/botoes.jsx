@@ -38,14 +38,17 @@ export const BotaoTema = () => {
 
 const EstilizaBotaoTema = styled.button`
 
-.botao-tema{
 
+
+    display: flex;
     width: 80px;
     height: 80px;
+    justify-content: center;
+    align-items: center;
     color: ${props => props.theme.primaria.borderPrimaria};
-    background - color: ${props => props.theme.secundaria.backgroundSecundaria};
-    border: solid 2px ${props => props.theme.primaria.borderPrimaria};
-    border - radius: 40px
-}
+    background-color: ${props => props.theme.secundaria.backgroundSecundaria};
+    border: ${props => props.theme.primaria.borderPrimaria};
+    border-radius: 40px
+
 
 `

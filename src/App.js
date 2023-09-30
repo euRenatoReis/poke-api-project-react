@@ -6,13 +6,14 @@ import { Home } from './pagesMontadas/Home';
 import { NoPage } from './pagesMontadas/NoPage';
 import { Layout } from './pagesMontadas/layout';
 import { PokePage } from './pagesMontadas/PokePage';
-
+import { GlobalStyle } from './services/Reset';
 
 function App() {
 
 
   return (
     <div className="App">
+      <GlobalStyle/>
       <ThemeProvider >
         <BrowserRouter>
           <Routes>
