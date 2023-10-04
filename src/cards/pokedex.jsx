@@ -29,20 +29,18 @@ export const Pokedex = (props) => {
 const PokedexEstilizada = styled.section`
 
 
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     display: flex; 
-    align-items: center;
+    padding-top: 20px;
+    padding-left: 20px;
     justify-content: center;
-    align-self: center;
-    justify-self: center;
+    align-items: center;
     flex-direction: column;
     gap: 10px;
     background-color: ${props => props.theme.especificos.fundoPokedex};
     list-style: none;
     border-radius: 0px;
-    max-width: 100%;
-    max-height: 100%;
     
 
 .lista-pokedex{

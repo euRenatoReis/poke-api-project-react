@@ -30,4 +30,5 @@ const PesquisarPokemonESpecificado = async (pokemonName) => {
 }
 
 
+
 export { pegarDataParaRenderizar, PesquisarPokemonESpecificado }
