@@ -49,9 +49,9 @@ const PokePage = () => {
 
     return (
         <TelaPokemonEstilizada theme={theme}>
-            {pokemonEscolhido ? (
+            {pokemonEscolhido && pokemonEscolhido.sprites ? (
                 <div>
-                    <PrimeiraLinhaPokePages className="linha-1">
+                    <PrimeiraLinhaPokePages theme={theme}>
                         <picture>
                             <source srcSet={pokemonEscolhido.sprites.front_default}></source>
                             <img src={pokemonEscolhido.sprites.front_default} alt='foto do pokemon'></img>
@@ -64,32 +64,34 @@ const PokePage = () => {
                                     <li key={index}>{tipos.type.name}</li>
                                 ))}</ul>
                             </div>
-                            <ul className='abilidades'>
-                                {pokemonEscolhido.abilities.map((ability, index) => (
-                                    <li key={index}>
-                                        {ability.ability.name}
-                                        {abilidades[index].effect_entries[0].effect}
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className='abilidades-div'>
+                                <h3>Abilities</h3>
+                                <ul className='abilidades'>
+                                    {pokemonEscolhido.abilities.map((ability, index) => (
+                                        <li key={index}>
+                                            {ability.ability.name}
+                                            {/* {abilidades[index].effect_entries[0].effect} */}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </PrimeiraLinhaPokePages>
-                    <SegundaLinhaPokePages className='linha-2'>
+                    <SegundaLinhaPokePages theme={theme}>
 
                         <div className='lista-moves'>
-                            <ul>
-                                {
-                                    pokemonEscolhido.moves.map((moves, index) => (
-                                        <li key={index}>{moves.move.name}</li>
-                                    ))
-                                }
-                            </ul>
+                            <div className='moves-div'>
+                                <h3>Movimentos</h3>
+                                <ul>
+                                    {
+                                        pokemonEscolhido.moves.map((moves, index) => (
+                                            <li key={index}>{moves.move.name}</li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
                         </div>
 
-                        <div className='sprites'>
-
-
-                        </div>
                     </SegundaLinhaPokePages>
                 </div>
             ) : (
@@ -108,14 +110,18 @@ const TelaPokemonEstilizada = styled.div`
     justify-content: center;
     width: 80%;
     height: 80%;
+    background-color: ${props => props.theme.especificos.fundoPokedex};
 `
 
 const PrimeiraLinhaPokePages = styled.div`
 
     display: flex;
     flex-direction: row;
-    background-color: blue;
     list-style: none;
+    width: 100%;
+    height: 50%;
+    background-color: ${props => props.theme.especificos.fundoPokedex};
+
 
     .identificacao{
 
@@ -130,34 +136,44 @@ const PrimeiraLinhaPokePages = styled.div`
         display: flex;
         flex-direction: row;
         gap: 10px;
-        background-color: yellow;
+        padding: 10px;  
+        
+    }
+
+    .identificacao ul li{
+        display: flex;
+        background-color:  ${props => props.theme.primaria.backgroundPrimaria};
         padding: 10px;
+        border-radius: 20px;
     }
 
 `
 const SegundaLinhaPokePages = styled.div`
-    display: flex;
-    flex-direction: row;
-    background-color: green;
-   
+display: flex;
+flex-direction: row;
+list-style: none;
+width: 100%;
+height: 50%;
+background-color: ${props => props.theme.especificos.fundoPokedex};
+
     ul{
-      list-style: none;
-      display: flex;
+        list-style: none;
+        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 10px;
         width: 100%;
         padding: 10px;
-        background-color: red;
+        background-color:  ${props => props.theme.secundaria.backgroundSecundaria}; 
     }
-    ul li{
+
+    .lista-moves ul li{
         display: flex;
-        background-color: yellow;
+        background-color:  ${props => props.theme.primaria.backgroundPrimaria};
         padding: 10px;
         border-radius: 10px;
-    }
+    }  
+  
 `
-
-/* ${props => props.theme.especificos.fundoPokedex} */
 
 export { PokePage } 

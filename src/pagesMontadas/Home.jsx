@@ -7,7 +7,7 @@ import { ThemeContext } from '../services/trocarTema';
 const Home = (props) => {
 
     const [pokemons, setPokemons] = useState([])
-    const { limit, setlimite } = props
+    const { limit, setLimit } = props
 
     const { theme } = useContext(ThemeContext)
 
@@ -45,7 +45,7 @@ const Home = (props) => {
 
     return (
         <HomeEstilizada theme={theme}>
-            <Pokedex pokemons={pokemons} setlimite={setlimite} limit={limit} />
+            <Pokedex pokemons={pokemons} limit={limit} setLimit={setLimit}/>
         </HomeEstilizada>
 
     )
@@ -57,7 +57,7 @@ const HomeEstilizada = styled.section`
     justify-content: center;
     align-items: center;
     max-width: 100%;
-    background-color: blue;
+    background-color: ${props => props.theme.especificos.fundoPokedex};
 `
 
 export { Home }

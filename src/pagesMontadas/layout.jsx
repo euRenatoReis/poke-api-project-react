@@ -1,5 +1,5 @@
 
-import { BotaoTema } from '../botoes/botoes';
+import { BotaoTema, BotaoVoltar } from '../botoes/botoes';
 import React, { useContext } from 'react'
 import styled from 'styled-components';
 import { ThemeContext } from '../services/trocarTema';
@@ -14,6 +14,7 @@ const Layout = () => {
         <LayoutEstilizado theme={theme}>
             <header className="App-header">
                 <BotaoTema />
+                <BotaoVoltar/>
             </header>
             <Outlet/>
         </LayoutEstilizado>
@@ -38,6 +39,17 @@ const LayoutEstilizado = styled.div`
 
  header{
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+ }
+
+ a{
+    color: ${props => props.theme.primaria.colorPrimaria};
+ }
+
+ a:visited{
+    color: ${props => props.theme.primaria.colorPrimaria};
  }
  
 

@@ -26,6 +26,12 @@ const Card = (props) => {
                     <h3>
                         {pokemon.name}
                     </h3>
+                    <div className='falsos-atributos'>
+                        <div className='falso-atributo-1'></div>
+                        <div className='falso-atributo-2'></div>
+                        <div className='falso-atributo-3'></div>
+                        <div className='falso-atributo-4'></div>
+                    </div>
                 </ParteDeBaixo>
 
             </CardEstilizado>
@@ -35,15 +41,15 @@ const Card = (props) => {
 
 const CardEstilizado = styled.div`
 
-    width: 100%;
-    height: 100%;
+    width: 180px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     border-radius: 14px;
     padding: 10px;
     border: ${props => props.theme.primaria.borderPrimaria};
-    background-color: ${props => props.theme.primaria.backgroundPrimaria};   
+    background-color: ${props => props.theme.secundaria.backgroundSecundaria};   
    
 `
 
@@ -52,7 +58,7 @@ const PicturePokemon = styled.picture`
     display: flex;
     align-content: center;
     justify-content: center;
-    background-color: ${props => props.theme.especificos.fundoPokedex};
+    background-color: ${props => props.theme.especificos.imagemPokemonBg};
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
     width: 100%;
@@ -63,6 +69,7 @@ const PicturePokemon = styled.picture`
 const ParteDeBaixo =  styled.div`
 
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 40%;
     border-top: ${props => props.theme.primaria.borderPrimaria};
@@ -73,6 +80,39 @@ const ParteDeBaixo =  styled.div`
     color: ${props => props.theme.primaria.borderPrimaria};
     background-color: ${props => props.theme.secundaria.backgroundSecundaria};
 
+    .falsos-atributos{
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .falsos-atributos div{ border-radius: 5px;}
+
+    .falsos-atributos div:nth-child(1){
+        background-color: ${props => props.theme.secundaria.colorSecundaria};
+        width: 60px;
+        height: 20px;
+    }
+    .falsos-atributos div:nth-child(2){
+        background-color: ${props => props.theme.secundaria.colorSecundaria};
+        width: 60px;
+        height: 20px;
+    }
+    .falsos-atributos div:nth-child(3){
+        background-color: ${props => props.theme.secundaria.colorSecundaria};
+        width: 60px;
+        height: 20px;
+    }
+    .falsos-atributos div:nth-child(4){
+        background-color: ${props => props.theme.secundaria.colorSecundaria};
+        width: 60px;
+        height: 20px;
+    }
 
 `
 

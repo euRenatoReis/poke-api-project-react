@@ -20,7 +20,6 @@ const PesquisarPokemonESpecificado = async (pokemonName) => {
 
         const dataDOPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
         const pokemonDados = await dataDOPokemon.json()
-        console.log('na função raiz:', pokemonDados)
         return pokemonDados
     } catch (error) {
 

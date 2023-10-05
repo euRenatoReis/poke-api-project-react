@@ -1,24 +1,24 @@
 import React, { useContext, useState } from "react"
-
+import { Link } from "react-router-dom"
 import { ThemeContext, themes } from "../services/trocarTema"
 import styled from "styled-components"
 
 export const BotaoCarregarMais = () => {
 
-    const [limit, setlimite] = useState(20)
+    const [limit, setLimit] = useState(30)
 
     const { theme } = useContext(ThemeContext)
 
     const morePokemon = () => {
 
-        setlimite(limit)
+       setLimit(limit + 30)
     }
 
     return (
 
-        <button theme={theme} onClick={() => morePokemon()} className="botao-carregar-mais">
+        <EstilizaCarregarMais theme={theme} onClick={() => morePokemon()} className="botao-carregar-mais">
             Carregar Mais
-        </button>
+        </EstilizaCarregarMais>
     )
 }
 
@@ -35,20 +35,56 @@ export const BotaoTema = () => {
     )
 }
 
+export const BotaoVoltar = () => {
+
+    const { theme } = useContext(ThemeContext)
+
+    return (
+        <EstilizaBotaoVoltar theme={theme}>
+            <Link to={`/`}>
+                Voltar
+            </Link>
+        </EstilizaBotaoVoltar>
+    )
+}
 
 const EstilizaBotaoTema = styled.button`
 
-
-
     display: flex;
     width: 80px;
-    height: 80px;
+    height: 50px;
     justify-content: center;
     align-items: center;
-    color: ${props => props.theme.primaria.borderPrimaria};
-    background-color: ${props => props.theme.secundaria.backgroundSecundaria};
+    color: ${props => props.theme.primaria.colorPrimaria};
+    background-color: ${props => props.theme.primaria.backgroundPrimaria};
     border: ${props => props.theme.primaria.borderPrimaria};
     border-radius: 40px
 
+`
+
+const EstilizaBotaoVoltar = styled.button`
+
+    display: flex;
+    width: 90px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    color: ${props => props.theme.primaria.colorPrimaria};
+    background-color: ${props => props.theme.primaria.backgroundPrimaria};
+    border: ${props => props.theme.primaria.borderPrimaria};
+`
+
+const EstilizaCarregarMais = styled.button`
+
+    display: flex;
+    width: 90px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    color: ${props => props.theme.secundaria.colorSecundaria};
+    background-color: ${props => props.theme.primaria.backgroundPrimaria};
+    border: ${props => props.theme.primaria.borderPrimaria};
 
 `

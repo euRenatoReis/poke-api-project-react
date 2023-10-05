@@ -3,10 +3,11 @@ import styled from "styled-components";
 import React, {useContext} from "react";
 import { ThemeContext } from "../services/trocarTema";
 import Card from "./card";
+import { BotaoCarregarMais } from "../botoes/botoes";
 
 export const Pokedex = (props) => {
 
-    const { pokemons, setlimite, limit} = props;
+    const { pokemons, limit, setLimit} = props;
 
     const { theme } = useContext(ThemeContext)
 
@@ -21,7 +22,7 @@ export const Pokedex = (props) => {
                 }
             </ul>
 
-            <input className="botao-carregar-mais" setlimite={setlimite} limit={limit} type="button" />
+            <BotaoCarregarMais limit={limit} setLimit={setLimit}/>
         </PokedexEstilizada>
     )
 }
@@ -65,6 +66,7 @@ display: flex;
 flex-direction: column;
 border-radius: 14px;
 border: ${props => props.theme.primaria.borderPrimaria};
+background-color: ${props => props.theme.secundaria.backgroundSecundaria};
 
 }
 
