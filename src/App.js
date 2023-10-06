@@ -1,5 +1,4 @@
 
-import './App.css';
 import React, {useContext} from 'react';
 import { ThemeProvider, ThemeContext} from '../src/services/trocarTema.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -13,7 +12,7 @@ import { Fonts } from './fonts/fonts';
 
 function App() {
 
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className="App">

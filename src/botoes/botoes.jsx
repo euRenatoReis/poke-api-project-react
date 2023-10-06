@@ -1,24 +1,43 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import { ThemeContext, themes } from "../services/trocarTema"
 import styled from "styled-components"
 
-export const BotaoCarregarMais = () => {
+export const BotaoPaginaProxima = (props) => {
 
-    const [limit, setLimit] = useState(30)
+    const { theme } = useContext(ThemeContext);
+    const { page, setPage, totalPages } = props;
 
-    const { theme } = useContext(ThemeContext)
-
-    const morePokemon = () => {
-
-       setLimit(limit + 30)
+    function ProximaPagina() {
+        if (page + 1 !== totalPages) {
+            setPage(page + 1)
+        }
     }
 
     return (
 
-        <EstilizaCarregarMais theme={theme} onClick={() => morePokemon()} className="botao-carregar-mais">
-            Carregar Mais
-        </EstilizaCarregarMais>
+        <EstilizaBotoesPaginacao theme={theme} onClick={() => ProximaPagina()} className="botao-carregar-mais">
+            ▶️
+        </EstilizaBotoesPaginacao>
+    )
+}
+
+export const BotaoPaginaAnterior = (props) => {
+
+    const { theme } = useContext(ThemeContext);
+    const { page, setPage } = props;
+
+    function AnteriorPagina() {
+        if (page > 0) {
+            setPage(page - 1)
+        }
+    }
+
+    return (
+
+        <EstilizaBotoesPaginacao theme={theme} onClick={() => AnteriorPagina()} className="botao-carregar-mais">
+            ◀️
+        </EstilizaBotoesPaginacao>
     )
 }
 
@@ -75,7 +94,7 @@ const EstilizaBotaoVoltar = styled.button`
     border: ${props => props.theme.primaria.borderPrimaria};
 `
 
-const EstilizaCarregarMais = styled.button`
+const EstilizaBotoesPaginacao = styled.button`
 
     display: flex;
     width: 90px;

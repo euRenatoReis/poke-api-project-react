@@ -1,13 +1,13 @@
 
 import styled from "styled-components";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../services/trocarTema";
 import Card from "./card";
-import { BotaoCarregarMais } from "../botoes/botoes";
+import { BotaoPaginaProxima, BotaoPaginaAnterior } from "../botoes/botoes";
 
 export const Pokedex = (props) => {
 
-    const { pokemons, limit, setLimit} = props;
+    const { pokemons, page, setPage, totalPages } = props;
 
     const { theme } = useContext(ThemeContext)
 
@@ -17,12 +17,17 @@ export const Pokedex = (props) => {
             <ul className="lista-pokedex">
                 {pokemons.map((pokemon, index) => (
 
-                    <li className="list-card-pokemon" key={index}><Card pokemon={pokemon}/></li>
+                    <li className="list-card-pokemon" key={index}><Card pokemon={pokemon} /></li>
                 ))
                 }
             </ul>
 
-            <BotaoCarregarMais limit={limit} setLimit={setLimit}/>
+            <footer>
+                <BotaoPaginaAnterior setPage={setPage} page={page} />
+                <div className="numero-paginacao">{page} de {totalPages}</div>
+                <BotaoPaginaProxima setPage={setPage} page={page} totalPages={totalPages} />
+            </footer>
+
         </PokedexEstilizada>
     )
 }
@@ -79,5 +84,12 @@ background-color: ${props => props.theme.secundaria.backgroundSecundaria};
     border: ${props => props.theme.primaria.borderPrimaria};
 }
 
+footer{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 
 `

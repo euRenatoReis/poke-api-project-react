@@ -4,10 +4,14 @@ import { pegarDataParaRenderizar } from "../services/getData"
 import React,{ useEffect, useState, useContext } from "react";
 import { ThemeContext } from '../services/trocarTema';
 
-const Home = (props) => {
+const Home = () => {
 
     const [pokemons, setPokemons] = useState([])
-    const { limit, setLimit } = props
+    const [page, setPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+
+    const itensPerPage = 25;
+  
 
     const { theme } = useContext(ThemeContext)
 
@@ -15,7 +19,7 @@ const Home = (props) => {
 
         try {
 
-            const pegaFunction = await pegarDataParaRenderizar(limit)
+            const pegaFunction = await pegarDataParaRenderizar(itensPerPage, itensPerPage*page)
             const pegaFunctionResults = await pegaFunction.results;
 
             const pokemonsDatas = await pegaFunctionResults.map(async (urlpokemon) => {
@@ -27,6 +31,8 @@ const Home = (props) => {
                 return await fetchPokemon.json()
 
             });
+
+            setTotalPages(Math.ceil(pegaFunction.count / itensPerPage));
 
             const resultados = await Promise.all(pokemonsDatas);
 
@@ -45,7 +51,7 @@ const Home = (props) => {
 
     return (
         <HomeEstilizada theme={theme}>
-            <Pokedex pokemons={pokemons} limit={limit} setLimit={setLimit}/>
+            <Pokedex pokemons={pokemons} page={page} setPage={setPage} totalPages={totalPages}/>
         </HomeEstilizada>
 
     )

@@ -1,10 +1,10 @@
 
 
-const pegarDataParaRenderizar = async (limit) => {
+const pegarDataParaRenderizar = async (limit = 50, offset = 0) => {
 
     try {
 
-        const data = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`)
+        const data = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
         const dataAll = data.json()
         return dataAll
 
