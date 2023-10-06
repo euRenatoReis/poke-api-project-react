@@ -8,7 +8,7 @@ import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
 
-    const { theme } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext);
 
     return (
         <LayoutEstilizado theme={theme}>
@@ -16,7 +16,7 @@ const Layout = () => {
                 <BotaoTema />
                 <BotaoVoltar/>
             </header>
-            <Outlet/>
+            <Outlet />
         </LayoutEstilizado>
     )
 }
@@ -29,8 +29,8 @@ const LayoutEstilizado = styled.div`
     align-items: center;
     flex-direction: column;
     color: ${props => props.theme.primaria.borderPrimaria};
-    background-color: ${props => props.theme.secundaria.backgroundSecundaria};
-    border: ${props => props.theme.primaria.borderPrimaria};
+    background-image: url(${props => props.theme.especificos.fundoImagem});
+    background-size: cover;
     max-width: 100vw;
     min-height: 100vh;
     gap: 10px;

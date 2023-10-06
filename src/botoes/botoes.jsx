@@ -1,7 +1,9 @@
-import React, { useContext } from "react"
-import { Link } from "react-router-dom"
-import { ThemeContext, themes } from "../services/trocarTema"
-import styled from "styled-components"
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ThemeContext, themes } from "../services/trocarTema";
+import styled from "styled-components";
+import { FaSun, FaMoon, FaArrowRotateLeft } from "react-icons/fa6";
+
 
 export const BotaoPaginaProxima = (props) => {
 
@@ -44,12 +46,15 @@ export const BotaoPaginaAnterior = (props) => {
 
 export const BotaoTema = () => {
 
-    const { theme, updateTheme } = useContext(ThemeContext)
+    const { theme, updateTheme } = useContext(ThemeContext);
+
 
     return (
 
         <EstilizaBotaoTema className="botao-tema" onClick={() => updateTheme(theme === themes.light ? themes.dark : themes.light)} theme={theme}>
-            tema
+            {
+                theme === themes.light ? <FaSun/> : <FaMoon/>
+            }
         </EstilizaBotaoTema>
     )
 }
@@ -61,7 +66,7 @@ export const BotaoVoltar = () => {
     return (
         <EstilizaBotaoVoltar theme={theme}>
             <Link to={`/`}>
-                Voltar
+                <FaArrowRotateLeft />
             </Link>
         </EstilizaBotaoVoltar>
     )

@@ -11,7 +11,6 @@ const Home = () => {
     const [totalPages, setTotalPages] = useState(0);
 
     const itensPerPage = 25;
-  
 
     const { theme } = useContext(ThemeContext)
 

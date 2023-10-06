@@ -1,6 +1,6 @@
 
-import React, {useContext} from 'react';
-import { ThemeProvider, ThemeContext} from '../src/services/trocarTema.jsx';
+import React, { useContext } from 'react';
+import { ThemeProvider, ThemeContext } from '../src/services/trocarTema.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './pagesMontadas/Home';
 import { NoPage } from './pagesMontadas/NoPage';
@@ -16,8 +16,8 @@ function App() {
 
   return (
     <div className="App">
-      <GlobalStyle/>
-      <Fonts theme={theme}/>
+      <GlobalStyle />
+      <Fonts theme={theme} />
       <ThemeProvider >
         <BrowserRouter>
           <Routes>

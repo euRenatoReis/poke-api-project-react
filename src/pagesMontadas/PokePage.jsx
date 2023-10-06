@@ -9,6 +9,7 @@ const PokePage = () => {
 
     const [pokemonEscolhido, setPokemonEscolhido] = useState({});
     const [abilidades, setAbilidades] = useState([]);
+    const [isHovered, setHovered] = useState(false)
     const { pokemonNome } = useParams();
     const { theme } = useContext(ThemeContext);
 
@@ -17,8 +18,6 @@ const PokePage = () => {
             try {
                 const pegaDado = await PesquisarPokemonESpecificado(pokemonNome);
 
-                console.log('o pokemon é:', pegaDado);
-
                 setPokemonEscolhido(pegaDado);
 
             } catch (error) {
@@ -26,15 +25,14 @@ const PokePage = () => {
             }
         };
 
-        const pegaAbilidadesPesquisadas = async (pokemonEscolhido) => {
+        const pegaAbilidadesPesquisadas = async () => {
             try {
-                const urlHabilidades = await pokemonEscolhido.abilities.map((abilidade) => {
-                    const pesquisaPelaURl = fetch(abilidade.ability.url);
-                    const pesquisaUrlJSon = pesquisaPelaURl.json();
-                    return pesquisaUrlJSon
-                })
 
-                console.log(urlHabilidades)
+                const urlHabilidades = await Promise.all(pokemonEscolhido.abilities.map(async (abilidade) => {
+                    const pesquisaPelaURl = await fetch(abilidade.ability.url);
+                    const pesquisaUrlJSon = await pesquisaPelaURl.json();
+                    return pesquisaUrlJSon;
+                }))
 
                 setAbilidades(urlHabilidades)
 
@@ -45,7 +43,15 @@ const PokePage = () => {
 
         pegaDadosPesquisados();
         pegaAbilidadesPesquisadas(pokemonEscolhido);
+
     }, [pokemonNome]);
+
+    function mostrarDetalhesHover(){
+        setHovered(true);
+    }
+    function esconderDetalhesHover(){
+        setHovered(false)
+    }
 
     return (
         <TelaPokemonEstilizada theme={theme}>
@@ -68,9 +74,15 @@ const PokePage = () => {
                                 <h3>Abilities</h3>
                                 <ul className='abilidades'>
                                     {pokemonEscolhido.abilities.map((ability, index) => (
-                                        <li key={index}>
+                                        <li className='detalhes' key={index} onMouseOver={mostrarDetalhesHover} onMouseOut={esconderDetalhesHover}>
                                             {ability.ability.name}
-                                            {/* {abilidades[index].effect_entries[0].effect} */}
+                                            {isHovered && abilidades[index] && abilidades[index].effect_entries && (
+                                                <ul className='habilidades-infos'>
+                                                    {abilidades[index].effect_entries.map((effectsdetails, innerIndex) => (
+                                                        <li key={innerIndex}>{effectsdetails.effect}</li>
+                                                    ))}
+                                                </ul>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
@@ -111,6 +123,8 @@ const TelaPokemonEstilizada = styled.div`
     width: 80%;
     height: 80%;
     background-color: ${props => props.theme.especificos.fundoPokedex};
+    border-radius: 20px;
+    
 `
 
 const PrimeiraLinhaPokePages = styled.div`
@@ -120,14 +134,24 @@ const PrimeiraLinhaPokePages = styled.div`
     list-style: none;
     width: 100%;
     height: 50%;
-    background-color: ${props => props.theme.especificos.fundoPokedex};
+    background-image: url(${props => props.theme.especificos.fundoImagem});
+    background-size: cover;
+    border: solid 15px purple;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
+    picture{
+        display: flex;
+        padding: 20px;
+        width: 200px;
+        height: 200px;
+    }
 
     .identificacao{
 
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 30px;
         padding: 10px;
     }
 
@@ -147,6 +171,33 @@ const PrimeiraLinhaPokePages = styled.div`
         border-radius: 20px;
     }
 
+    .abilidades{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .abilidades .detalhes{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .abilidades-div{
+        padding: 20px;
+    }
+
+    .habilidades-infos{
+        top: 185px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color:  ${props => props.theme.secundaria.backgroundSecundaria};
+        gap: 10px;
+        border-radius: 10px;
+    }
+
 `
 const SegundaLinhaPokePages = styled.div`
 display: flex;
@@ -155,6 +206,13 @@ list-style: none;
 width: 100%;
 height: 50%;
 background-color: ${props => props.theme.especificos.fundoPokedex};
+border: solid 15px purple;
+border-bottom-left-radius: 20px;
+border-bottom-right-radius: 20px;
+
+    .lista-moves{
+       display: flex;
+    }
 
     ul{
         list-style: none;
@@ -164,7 +222,7 @@ background-color: ${props => props.theme.especificos.fundoPokedex};
         gap: 10px;
         width: 100%;
         padding: 10px;
-        background-color:  ${props => props.theme.secundaria.backgroundSecundaria}; 
+        background-color: ${props => props.theme.especificos.fundoPokedex};
     }
 
     .lista-moves ul li{
@@ -173,6 +231,10 @@ background-color: ${props => props.theme.especificos.fundoPokedex};
         padding: 10px;
         border-radius: 10px;
     }  
+
+    .moves-div{
+        padding: 20px;
+    }
   
 `
 

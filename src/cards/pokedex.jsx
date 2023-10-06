@@ -90,6 +90,8 @@ footer{
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    padding: 20px;
+    justify-self: center;
 }
 
 `

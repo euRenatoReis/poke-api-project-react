@@ -1,16 +1,15 @@
 
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ThemeContext } from '../services/trocarTema.jsx';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Card = (props) => {
 
-    const { theme } = useContext(ThemeContext)
-    const { pokemon } = props
-
-
+    const { theme } = useContext(ThemeContext);
+    const { pokemon } = props;
+  
     const pokemonNome = pokemon.name
 
     return (
